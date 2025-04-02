@@ -6,8 +6,9 @@ data = pd.read_excel("Product Price Calculator_20250228.xlsx", sheet_name="Data"
 
 st.title("Myron Pricing Tool")
 
-# Sidebar inputs
-product_id = st.sidebar.selectbox("Select Product (Five_Digit ID)", data["Five_Digit"].dropna().astype(int))
+# Safely extract product IDs
+product_options = pd.to_numeric(data["Five_Digit"], errors="coerce").dropna().astype(int).unique()
+product_id = st.sidebar.selectbox("Select Product (Five_Digit ID)", sorted(product_options))
 product_row = data[data["Five_Digit"] == product_id].iloc[0]
 
 st.sidebar.markdown("### Discount Inputs")
