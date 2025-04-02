@@ -1,1 +1,0 @@
-# Myron Pricing Tool v4.5 placeholder
